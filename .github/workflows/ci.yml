@@ -2,9 +2,9 @@ name: CI
 
 on:
   push:
-    branches: [ "master", "main" ]
+    branches: ["master", "main"]
   pull_request:
-    branches: [ "master", "main" ]
+    branches: ["master", "main"]
 
 jobs:
   test:
@@ -31,5 +31,7 @@ jobs:
           python scripts/verify_repo.py
 
       - name: Run tests
+        env:
+          PYTHONPATH: ${{ github.workspace }}
         run: |
-          pytest -q
+          python -m pytest -q
